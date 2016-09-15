@@ -46,7 +46,10 @@ public class EventStreamParser {
       }
     } else if ((colonIndex = line.indexOf(":")) != -1) {
       String field = line.substring(0, colonIndex);
-      String value = line.substring(colonIndex + 1).replaceFirst(" ", EMPTY_STRING);
+      String value = line.substring(colonIndex + 1);
+      if (value.charAt(0) == ' '){
+          value = value.substring(1);
+      }
       processField(field, value);
     } else {
       processField(line.trim(),
